@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <div class="col-md-12 col-sm-12" >
+      <h2>Latest Mars News</h2>
+      <h3>{{mars_current_data.news_title}}</h3>
+      <p>{{mars_current_data.news_paragraph}}</p>
+    </div>
+
+    <div class="col-md-8 col-sm-12" >
+      <h2>Featured Mars Image</h2>
+      <div class="thumbnail">
+        <img src="{{ mars_current_data.featured_image_url }}" alt="...">
+      </div>
+    </div>
+
+
+    <div class="col-md-4 col-sm-12" >
+      <div class="thumbnail">
+        <h3>Current Weather on Mars</h3>
+        <p>{{mars_current_data.mars_weather}}</p>
+      </div>
+      <div class="thumbnail">
+        <h3>Mars Facts</h3>
+        {% autoescape false %}
+          <p>{{ mars_current_data.mars_facts }}
+        {% endautoescape %}
+        <hr>
+      </div>
+    </div>
+    <div>
+        <h2 class = "col-md-12 col-sm-12 text-center">Mars Hemispheres</h2><br>
+        <hr>
+        {% for item in mars_current_data.hemisphere_image_urls %}
+        <div class="thumbnail col-md-6 col-sm-6" >
+          <img src="{{ item.img_url }}" alt="..." >
+          <caption><b>{{item.title}}</b></caption>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+  </div>
+  </div>
+</body>
+
+</html>
